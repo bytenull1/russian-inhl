@@ -1,0 +1,22 @@
+name: checks
+
+# The plugin itself is not built here: it compiles against the game's own assemblies,
+# which can't be redistributed (RussianTranslation/lib/README.md). Build it locally.
+# English.json isn't in the repo either, so the translation is linted without --english.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  translation:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.x"
+      - name: Lint Russian.json
+        run: python tools/check_translation.py

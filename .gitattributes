@@ -1,0 +1,5 @@
+# Normalization
+*               text=auto eol=lf
+
+# LF + specialized diff
+*.cs            text eol=lf diff=csharp
